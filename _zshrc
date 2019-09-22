@@ -1,0 +1,32 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=0
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/ureakim/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+autoload -U colors && colors
+
+# Prompt
+PROMPT="%{$fg[blue]%}%m%{$reset_color%}@%{$fg[green]%}%~%{$reset_color%} %#> "
+
+# Colors for ls command
+test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
+
+# Custom alias
+if [ -f ~/.global.aliases ]; then
+    . ~/.global.aliases
+fi
+
+# key bindings
+bindkey "^[[2~" overwrite-mode        # Ins
+bindkey "^[[3~" delete-char           # Del
+bindkey "^[[5~" beginning-of-history  # PageUp
+bindkey "^[[6~" end-of-history        # PageDown
+bindkey "^[[7~" beginning-of-line     # Home
+bindkey "^[[8~" end-of-line           # End

@@ -1,0 +1,3 @@
+alias ll="ls -lh"
+alias lla="ls -lha"
+alias mx="emacs -nw"
