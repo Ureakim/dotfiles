@@ -122,7 +122,7 @@ bindsym $mod+r mode "resize"
 
 focus_follows_mouse no
 
-for_window [class="keepassxc"] floating enable
+for_window [class="KeePassXC"] floating enable
 
 # Scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
