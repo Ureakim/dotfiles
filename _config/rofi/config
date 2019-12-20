@@ -1,0 +1,4 @@
+rofi.modi: run,window,ssh,combi
+rofi.combi-modi: run,ssh
+rofi.theme: Arc-Dark
+rofi.font: Hack 10

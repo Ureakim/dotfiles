@@ -17,7 +17,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 # start dmenu with only desktop app
-bindsym $mod+d exec --no-startup-id "dmenu_run -nb '#2E3440' -nf '#D8DEE9' -sb '#4C566A' -sf '#D8DEE9'"
+bindsym $mod+d exec --no-startup-id "rofi -show combi"
 
 # change focus
 bindsym $mod+j focus left
