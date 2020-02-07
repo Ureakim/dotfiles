@@ -1,0 +1,10 @@
+[user]
+	name = Ureakim
+	email = dev@ureakim.net
+[core]
+	editor = emacs
+[alias]
+	st = status
+	ci = commit
+[push]
+	default = simple
