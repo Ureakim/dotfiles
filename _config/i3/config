@@ -190,4 +190,4 @@ bar {
 }
 
 exec --no-startup-id "feh --bg-fill ~/.dotfiles/assets/wallpaper.png"
-
+exec --no-startup-id "redshift"
