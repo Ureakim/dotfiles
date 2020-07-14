@@ -1,11 +1,11 @@
-*.faceName:    Hack
-*.faceSize:    10
+u*.faceName:    Iosevka Term SS04
+*.faceSize:    11
 *.cursorBlink: true
 
-URxvt*font:           xft:Hack:size=10
-URxvt*boldFont:       xft:Hack:style=Bold:size=10
-URxvt*italicFont:     xft:Hack:style=Oblique:size=10
-URxvt*boldItalicFont: xft:Hack:style=Bold Oblique:size=10
+URxvt*font:           xft:Iosevka Term SS04:size=11
+URxvt*boldFont:       xft:Iosevka Term SS04:style=Bold:size=11
+URxvt*italicFont:     xft:Iosevka Term SS04:style=Oblique:size=11
+URxvt*boldItalicFont: xft:Iosevka Tern SS04:style=Bold Oblique:size=11
 
 ! Disable the scrollbar
 URxvt*scrollBar:   false

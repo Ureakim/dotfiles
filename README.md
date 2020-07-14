@@ -4,5 +4,5 @@
 * rofi
 * rxvt-unicode-256color
 * feh
-* Hack font
+* Iosevka SS04 font
 * Font Awesome
