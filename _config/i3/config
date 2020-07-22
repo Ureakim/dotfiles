@@ -130,17 +130,17 @@ bindsym $mod+BackSpace scratchpad show
 bindsym $mod+equal [class="keepassxc"] scratchpad show
 
 # theme color
-set_from_resource $background-dark    background
-set_from_resource $background-light   color8
+set_from_resource $background-dark    color8
+set_from_resource $background-light   background
 set_from_resource $foreground         foreground
-set_from_resource $blue               color13
+set_from_resource $blue               color12
 
-# class                 border            backgr.           text              indicator         child_border
-client.focused          $background-dark  $background-light $foreground       $blue             $background-dark
-client.focused_inactive $background-dark  $background-dark  $foreground       $background-light $background-dark
-client.unfocused        $background-dark  $background-dark  $foreground       $background-light $background-dark
-client.urgent           $background-dark  $background-dark  $background-dark  $background-light $background-dark
-client.placeholder      $background-dark  $background-dark  $foreground       $background-light $background-dark
+# class                 border            backgr.           text             indicator          child_border
+client.focused          $background-dark  $background-dark  $foreground      $blue              $background-dark
+client.focused_inactive $background-dark  $background-light $foreground      $background-light  $background-dark
+client.unfocused        $background-dark  $background-light $foreground      $background-light  $background-dark
+client.urgent           $background-dark  $background-light $background-dark $background-light  $background-dark
+client.placeholder      $background-dark  $background-light $foreground      $background-light  $background-dark
 client.background       $background-dark
 
 # resize window (you can also use the mouse for that)
@@ -176,15 +176,15 @@ bar {
   separator_symbol " | "
 
   colors {
-    background $background-dark
+    background $background-light
     statusline $foreground
-    separator  $background-light
+    separator  $foreground
 
-    # class            border     bg         text
-    focused_workspace  $background-light $background-light $foreground
+    # class            border            bg                text
+    focused_workspace  $background-dark  $background-dark  $foreground
     active_workspace   $background-light $background-dark  $foreground
-    inactive_workspace $background-dark  $background-dark  $foreground
-    urgent_workspace   $blue      $background-dark  $blue
+    inactive_workspace $background-light $background-light $foreground
+    urgent_workspace   $blue             $background-dark  $blue
 #    binding_mode       #2f343a #900000 #ffffff
   }
 }
