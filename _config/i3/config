@@ -181,8 +181,8 @@ bar {
     separator  $foreground
 
     # class            border            bg                text
-    focused_workspace  $background-dark  $background-dark  $foreground
-    active_workspace   $background-light $background-dark  $foreground
+    focused_workspace  $forground        $forground        $background-dark
+    active_workspace   $background-dark  $background-dark  $foreground
     inactive_workspace $background-light $background-light $foreground
     urgent_workspace   $blue             $background-dark  $blue
 #    binding_mode       #2f343a #900000 #ffffff
