@@ -1,0 +1,6 @@
+configuration {
+  modi: "combi";
+  combi-modi: "run,ssh,window";
+  theme: "glue_pro_blue";
+  font: "Iosevka Term SS04 11";
+}
