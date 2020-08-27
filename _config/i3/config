@@ -127,7 +127,7 @@ for_window [class="KeePassXC"] floating enable
 # Scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
 bindsym $mod+BackSpace scratchpad show
-bindsym $mod+equal [class="keepassxc"] scratchpad show
+bindsym $mod+equal [class="KeePassXC"] scratchpad show
 
 # theme color
 set_from_resource $background-dark    color8
@@ -191,3 +191,5 @@ bar {
 
 exec --no-startup-id "feh --bg-fill ~/.dotfiles/assets/wallpaper.png"
 exec --no-startup-id "redshift"
+exec --no-startup-id "compton"
+
