@@ -1,6 +1,6 @@
 configuration {
-  modi: "tools:~/bin/rofi-toolbox";
-  combi-modi: "run,tools";
+  modi: "combi";
+  combi-modi: "run";
   theme: "glue_pro_blue";
   font: "Iosevka Term SS04 11";
 }
