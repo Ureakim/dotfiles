@@ -5,6 +5,6 @@
 	editor = emacs
 [alias]
 	st = status
-	ci = commit
+	cm = commit
 [push]
 	default = simple

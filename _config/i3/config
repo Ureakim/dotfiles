@@ -169,6 +169,7 @@ mode "resize" {
 }
 
 bar {
+  font pango:Iosevka SS04, FontAwesome 9
   status_command i3status --config ~/.config/i3status/config
   mode dock
   position top
@@ -189,7 +190,7 @@ bar {
   }
 }
 
+exec --no-startup-id "sh ~/.screenlayout/default"
 exec --no-startup-id "feh --bg-fill ~/.dotfiles/assets/wallpaper.png"
 exec --no-startup-id "redshift"
 exec --no-startup-id "compton"
-exec --no-startup-id "sh ~/.screenlayout/default"
