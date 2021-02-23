@@ -2,5 +2,5 @@ configuration {
   modi: "combi";
   combi-modi: "run,code:rofi-code.py ~/src/workspaces,layout:rofi-script.py ~/.screenlayout";
   theme: "glue_pro_blue";
-  font: "Iosevka Term SS04 11";
+  font: "Hack 11";
 }

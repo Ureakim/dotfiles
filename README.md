@@ -4,7 +4,7 @@
 * rofi
 * alacritty
 * feh
-* Iosevka SS04 font
+* Hack font
 * Font Awesome
 * Compton
 * Redshift
