@@ -2,7 +2,7 @@
 * zsh
 * i3wm
 * rofi
-* rxvt-unicode-256color
+* alacritty
 * feh
 * Iosevka SS04 font
 * Font Awesome
