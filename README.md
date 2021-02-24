@@ -4,8 +4,7 @@
 * rofi
 * alacritty
 * feh
-* Hack font
+* Montserrat and Hack fonts
 * Font Awesome
 * Compton
 * Redshift
-
