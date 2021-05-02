@@ -193,4 +193,4 @@ bar {
 exec --no-startup-id "sh ~/.screenlayout/default"
 exec --no-startup-id "feh --bg-fill ~/.dotfiles/assets/wallpaper.png"
 exec --no-startup-id "redshift"
-exec --no-startup-id "compton"
+exec --no-startup-id "compton --backend glx --paint-on-overlay --vsync opengl-swc"
