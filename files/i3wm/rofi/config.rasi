@@ -1,0 +1,16 @@
+configuration {
+  modi: "combi";
+  combi-modi: "drun,layout:~/bin/rofi-script.py ~/.screenlayout";
+  font: "MonaspiceNe Nerd Font 12";
+}
+
+@theme "~/.config/rofi/nebulae.rasi"
+
+listview {
+	lines: 10;
+	columns: 1;
+}
+
+window {
+	width: 30%;
+}

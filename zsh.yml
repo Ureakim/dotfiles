@@ -1,0 +1,40 @@
+---
+- name: Zsh config
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: Checking the PROFILE env variable
+      debug:
+        msg: "Profile set to '{{ lookup('env', 'PROFILE', default=UNDEFINED) }}'"
+
+    - name: Checking the USER env variable
+      debug:
+        msg: "User set to '{{ lookup('env', 'USER', default=UNDEFINED) }}'"
+
+    - name: Ensure zsh is at the latest version
+      dnf:
+        name:
+          - zsh
+        state: present
+      become: yes
+
+    - name: Symlink configurations
+      file:
+        src: "{{ ansible_env['PWD'] }}/files/zsh/{{ item.src }}"
+        dest: ~/{{ item.dest }}
+        force: true
+        state: link
+      loop:
+        - { src: "_zalias.{{lookup('env', 'PROFILE')}}", dest: ".zalias.specific" }
+        - { src: "_zprofile", dest: ".zprofile" }
+        - { src: "_zshenv", dest: ".zshenv" }
+        - { src: "_zshenv.{{ lookup('env', 'PROFILE')}}", dest: ".zshenv.specific" }
+        - { src: "_zshrc", dest: ".zshrc" }
+
+    - name: Change shell for zsh
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        shell: /bin/zsh
+      become: yes
+

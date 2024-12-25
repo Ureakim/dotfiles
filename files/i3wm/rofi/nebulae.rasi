@@ -1,0 +1,118 @@
+/**
+ * Nordic rofi theme
+ * Adapted by undiabler <undiabler@gmail.com>
+ *
+ * Nord Color palette imported from https://www.nordtheme.com/
+ *
+ */
+
+
+* {
+	bgprimary: #2e3440;
+	bgalt:     #191C24;
+	bgaccent:  #434c5e;
+	fg10:      #fcfcfc;
+	transparent: rgba(0,0,0,0);
+
+	foreground:  @fg10;
+	backlight:   #ccffeedd;
+	background-color:  transparent;
+
+	highlight:     underline bold #eceff4;
+
+}
+
+window {
+	location: center;
+	anchor:   center;
+	// transparency: "screenshot";
+	padding: 10px;
+	border:  0px;
+	border-radius: 6px;
+
+	background-color: @transparent;
+	spacing: 0;
+	children:  [mainbox];
+	orientation: horizontal;
+}
+
+mainbox {
+	spacing: 0;
+	children: [ inputbar, message, listview ];
+}
+
+message {
+	color: @fg10;
+	padding: 5;
+	border-color: @bgprimary;
+	border:  0px 2px 2px 2px;
+	background-color: @bgalt;
+}
+
+textbox {
+	color: @fg10;
+	background-color: @bgprimary;
+}
+
+inputbar {
+	color: @fg10;
+	padding: 11px;
+	background-color: @bgprimary;
+
+	border: 2px;
+	border-radius:  6px 6px 0px 0px;
+	border-color: @bgaccent;
+}
+
+entry, prompt, case-indicator {
+	text-font: inherit;
+	text-color:inherit;
+}
+
+prompt {
+	margin: 0px 1em 0em 0em ;
+}
+
+listview {
+	padding: 8px;
+	border-radius: 0px 0px 6px 6px;
+	border-color: @bgaccent;
+	border: 0px 2px 2px 2px;
+	background-color: @bgalt;
+	dynamic: false;
+}
+
+element {
+	padding: 3px;
+	vertical-align: 0.5;
+	border-radius: 4px;
+	background-color: transparent;
+	color: @foreground;
+	text-color: @fg10;
+}
+
+element selected.normal {
+	background-color: @bgaccent;
+	text-color: @fg10;
+}
+
+element-text, element-icon {
+	background-color: inherit;
+	text-color:       inherit;
+}
+
+button {
+	padding: 6px;
+	color: @fg10;
+	horizontal-align: 0.5;
+
+	border: 2px 0px 2px 2px;
+	border-radius: 4px 0px 0px 4px;
+	border-color: @bgaccent;
+}
+
+button selected normal {
+	border: 2px 0px 2px 2px;
+	border-color: @fg10;
+}
+

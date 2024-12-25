@@ -1,0 +1,24 @@
+[user]
+	name = Ureakim
+	email = dev@ureakim.net
+[core]
+	editor = vi
+[alias]
+	st = status -sb
+	br = branch
+	com = commit
+	unstage = reset HEAD --
+	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	brm = "!f() {\
+		while : ; do\
+			local current=$(git branch | grep ^*);\
+			local branch=$(git branch | grep -v ^* | fzf --height 30% --border --layout reverse --header \"Branch to delete (currently on $current)\");\
+			if [ ! -z "$branch" ]; then \
+				git branch -D $branch;\
+			else\
+				break; \
+			fi\
+		done\
+		}; f"
+[push]
+	default = current

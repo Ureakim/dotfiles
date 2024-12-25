@@ -1,0 +1,4 @@
+alias vi="nvim"
+alias vim="nvim"
+
+alias fzp="~/.dotfiles/scripts/fzp.sh ~/src"

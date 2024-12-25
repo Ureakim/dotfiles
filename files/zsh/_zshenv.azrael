@@ -1,0 +1,16 @@
+export RUST_PATH=$HOME/.cargo/bin
+
+export GTK_THEME=Adwaita-dark
+export QT_QPA_PLATFORMTHEME=qt5ct
+export CC=gcc
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export GOINSTALL=$HOME/.local/go
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export NPM_PACKAGES=$HOME/.npm-packages
+export NVM_DIR="$HOME/.nvm"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$NPM_PACKAGES/bin:$GOBIN_PATH:$GOINSTALL/bin:$GOPATH:$GOBIN:$PATH

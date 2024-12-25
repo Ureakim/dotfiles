@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Bazecor
+Exec=/home/ureakim/.local/bin/bazecor %u
+Terminal=false
+Type=Application
+StartupWMClass=bazecor
+Comment=Bazecor
+Categories=Office;

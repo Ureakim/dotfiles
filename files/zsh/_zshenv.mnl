@@ -1,0 +1,15 @@
+export GOINSTALL=/usr/local/go/bin
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+
+export DOTNET_TOOLS=$HOME/.dotnet/tools
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# opam configuration
+[[ ! -r /home/m-daponte/.opam/opam-init/init.zsh ]] || source /home/m-daponte/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+export PATH=$GOINSTALL:$GOPATH:$GOBIN:$DOTNET_TOOLS:$PATH
