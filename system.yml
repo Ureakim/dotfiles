@@ -1,31 +1,6 @@
 ---
-- name: system config
-  hosts: 127.0.0.1
+- name: System config
   connection: local
-
-  tasks:
-    - name: Mount tmp directories in tmpfs
-      mount:
-        src: tmpfs
-        path: "{{item}}"
-        fstype: tmpfs
-        opts: defaults,noatime,nosuid,size=8g
-        state: present
-      become: yes
-      loop:
-        - "/tmp"
-        - "/var/tmp"
-
-    - name: Create `~/bin` directory
-      file:
-        path: ~/.local/share/fonts/Monaspice
-        state: directory
-        mode: '0755'
-      register: create_monaspice
-
-    - name: Download and install Monaspice
-      unarchive:
-        src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Monaspace.zip
-        dest: ~/.local/share/fonts/Monaspice
-        remote_src: yes
-      when: create_monaspice.changed
+  hosts: localhost
+  roles:
+    - system

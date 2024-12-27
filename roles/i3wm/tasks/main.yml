@@ -1,0 +1,55 @@
+---
+- name: Ensure i3wm and dependencies are at the latest version
+  dnf:
+    name:
+      - i3
+      - i3lock
+      - i3blocks
+      - rofi
+      - arandr
+      - picom
+      - dunst
+      - solaar
+      - feh
+      - xfce4-power-manager
+      - network-manager-applet
+    state: present
+  become: yes
+
+- name: Create `~/bin` directory
+  file:
+    path: ~/bin
+    state: directory
+    mode: '0755'
+
+- name: Symlink configurations
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: true
+    state: link
+  loop:
+    - { src: "dunst", dest: "~/.config/dunst" }
+    - { src: "i3", dest: "~/.config/i3" }
+    - { src: "i3blocks", dest: "~/.config/i3blocks" }
+    - { src: "i3status", dest: "~/.config/i3status" }
+    - { src: "picom.conf", dest: "~/.config/picom.conf" }
+    - { src: "rofi", dest: "~/.config/rofi" }
+    - { src: "_gitconfig", dest: "~/.gitconfig" }
+    - { src: "_screenlayout", dest: "~/.screenlayout" }
+    - { src: "bin/i3_launch_or_scratchpad.sh", dest: "~/bin/i3_launch_or_scratchpad.sh" }
+    - { src: "bin/rofi-script.py", dest: "~/bin/rofi-script.py" }
+
+- name: Create .bg directory
+  file:
+    path: ~/.bg
+    state: directory
+    mode: '0755'
+
+- name: Symlink wallpaper
+  file:
+    src: "{{ role_path }}/files/bg/wallpaper.png"
+    dest: "~/.bg/wallpaper.png"
+    force: true
+    state: link
+

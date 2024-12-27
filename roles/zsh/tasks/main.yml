@@ -1,0 +1,40 @@
+---
+- name: Checking the USER env variable
+  debug:
+    msg: "User set to '{{ lookup('env', 'USER', default=UNDEFINED) }}'"
+
+- name: Ensure zsh is at the latest version
+  dnf:
+    name:
+      - zsh
+    state: present
+  become: yes
+
+- name: Symlink globale configurations
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: ~/{{ item.dest }}
+    force: true
+    state: link
+  loop:
+    - { src: "_zprofile", dest: ".zprofile" }
+    - { src: "_zshenv", dest: ".zshenv" }
+    - { src: "_zshrc", dest: ".zshrc" }
+
+- name: Symlink specific configurations
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: ~/{{ item.dest }}
+    force: true
+    state: link
+  loop:
+    - { src: "_zalias.{{ profile }}", dest: ".zalias.specific" }
+    - { src: "_zshenv.{{ profile }}", dest: ".zshenv.specific" }
+  when: profile is defined
+
+- name: Change shell for zsh
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: /bin/zsh
+  become: yes
+

@@ -1,9 +1,7 @@
 ---
-- name: i3wm config
+- name: Terminal config
   connection: local
   hosts: localhost
   roles:
     - fonts
-    - i3wm
     - term
-
