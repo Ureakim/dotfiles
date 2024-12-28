@@ -1,0 +1,31 @@
+---
+- name: Ensure syncthing and dependencies are at the latest version
+  dnf:
+    name:
+      - syncthing
+    state: latest
+  become: yes
+
+- name: Get the syncthing path
+  command: which syncthing
+  register: syncthing_path
+
+- name: Create the user systemd directory
+  file:
+    path: ~/.config/systemd/user
+    state: directory
+    mode: '0755'
+
+- name: Create systemd user file
+  template:
+    src: "{{ role_path }}/files/syncthing.service.j2"
+    dest: ~/.config/systemd/user/syncthing.service
+    mode: '0755'
+
+- name: Activate syncthing service
+  systemd_service:
+    name: syncthing
+    state: started
+    scope: user
+    enabled: true
+    daemon_reload: true

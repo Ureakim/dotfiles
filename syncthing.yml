@@ -1,0 +1,6 @@
+---
+- name: Syncthing config
+  connection: local
+  hosts: localhost
+  roles:
+    - syncthing
