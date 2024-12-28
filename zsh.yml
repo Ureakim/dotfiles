@@ -1,6 +1,0 @@
----
-- name: Zsh config
-  connection: local
-  hosts: localhost
-  roles:
-    - zsh

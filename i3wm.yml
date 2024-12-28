@@ -1,9 +1,0 @@
----
-- name: i3wm config
-  connection: local
-  hosts: localhost
-  roles:
-    - fonts
-    - i3wm
-    - term
-

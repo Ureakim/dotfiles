@@ -1,0 +1,6 @@
+---
+deps:
+  Fedora: ninja-build, cmake, gcc, make, unzip, gettext, curl, glibc-gconv-extra, tree-sitter-cli, ripgrep, nodejs, gcc-c++
+  Ubuntu: ninja-build, gettext, cmake, unzip, curl, build-essential, ripgrep, nodejs
+  Debian: ninja-build, gettext, cmake, unzip, curl, build-essential, ripgrep, nodejs
+

@@ -1,0 +1,54 @@
+---
+- name: Ensure neovim dependencies are at the latest version
+  package:
+    name: "{{deps[ansible_distribution]}}"
+    state: latest
+  become: yes
+
+- name: Get user homedir
+  command: echo $HOME
+  register: homedir
+  changed_when: false
+
+- name: Check if neovim is already installed
+  stat:
+    path: /usr/local/bin/nvim
+  register: neovim_installed
+
+- name: Pull the neovim config
+  git:
+    repo: https://github.com/Ureakim/dotvim.git
+    dest: "{{ homedir.stdout }}/.config/nvim"
+    version: nvim
+
+- name: Pull latest changes
+  git:
+    repo: https://github.com/neovim/neovim.git
+    dest: "{{ homedir.stdout }}/.nvim-src"
+    version: stable
+  register: neovim_version
+
+- name: Build Neovim
+  make:
+    chdir: "{{ homedir.stdout }}/.nvim-src"
+    params:
+      CMAKE_BUILD_TYPE: RelWithDebInfo
+  when: neovim_version.changed or not neovim_installed.stat.exists
+
+- name: Delete old files
+  shell: rm -rf {{ item }}
+  args:
+    removes: "{{ item }}"
+  loop:
+    - /usr/local/bin/nvim
+    - /usr/local/share/nvim/
+  become: yes
+  when: neovim_version.changed or not neovim_installed.stat.exists
+
+- name: Install Neovim
+  make:
+    chdir: "{{ homedir.stdout }}/.nvim-src"
+    target: install
+  become: yes
+  when: neovim_version.changed or not neovim_installed.stat.exists
+

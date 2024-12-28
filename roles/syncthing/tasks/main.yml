@@ -9,6 +9,7 @@
 - name: Get the syncthing path
   command: which syncthing
   register: syncthing_path
+  changed_when: false
 
 - name: Create the user systemd directory
   file:

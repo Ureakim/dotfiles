@@ -1,6 +1,8 @@
 ---
-- name: Syncthing config
+- name: system config
   connection: local
   hosts: localhost
   roles:
-    - syncthing
+    - fonts
+    - neovim
+

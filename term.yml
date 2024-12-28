@@ -1,7 +1,0 @@
----
-- name: Terminal config
-  connection: local
-  hosts: localhost
-  roles:
-    - fonts
-    - term

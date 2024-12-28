@@ -1,6 +1,12 @@
 ---
-- name: System config
+- name: system config
   connection: local
   hosts: localhost
   roles:
     - system
+    - zsh
+    - fonts
+    - term
+    - i3wm
+    - syncthing
+
