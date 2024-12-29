@@ -1,8 +1,7 @@
 ---
-- name: Ensure alacritty and dependencies are at the latest version
+- name: Ensure tmux and dependencies are at the latest version
   dnf:
     name:
-      - alacritty
       - tmux
     state: present
   become: yes
@@ -14,6 +13,5 @@
     force: true
     state: link
   loop:
-    - { src: "alacritty", dest: "~/.config/alacritty" }
     - { src: "_tmux.conf", dest: "~/.tmux.conf" }
 

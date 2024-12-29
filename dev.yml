@@ -4,6 +4,8 @@
   hosts: localhost
   roles:
     - fonts
+    - alacritty
+    - tmux
     - neovim
     - golang
 

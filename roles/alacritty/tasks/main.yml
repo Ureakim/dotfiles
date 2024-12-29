@@ -1,0 +1,17 @@
+---
+- name: Ensure alacritty and dependencies are at the latest version
+  dnf:
+    name:
+      - alacritty
+    state: present
+  become: yes
+
+- name: Symlink configurations
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: true
+    state: link
+  loop:
+    - { src: "alacritty", dest: "~/.config/alacritty" }
+

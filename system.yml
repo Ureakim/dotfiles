@@ -6,7 +6,7 @@
     - system
     - zsh
     - fonts
-    - term
+    - alacritty
     - i3wm
     - syncthing
 
