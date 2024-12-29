@@ -1,0 +1,43 @@
+---
+- name: Install dnf-plugins-core
+  package:
+    name: dnf-plugins-core
+    state: latest
+  become: yes
+
+- name: Add docker repo
+  get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/
+  become: yes
+  register: repo_present
+
+- name: Uninstall old docker version
+  package:
+    name: docker*
+    state: absent
+  become: yes
+  when: repo_present.changed
+
+- name: Install latest docker
+  package:
+    name: docker-ce, docker-ce-cli, containerd.io, docker-buildx-plugin, docker-compose-plugin
+    state: latest
+    update_cache: true
+  become: yes
+
+- name: Activate docker service
+  systemd_service:
+    name: docker
+    state: started
+    enabled: true
+    daemon_reload: true
+  become: yes
+
+- name: Add current user to the docker group
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    groups: docker
+    append: yes
+  become: yes
+

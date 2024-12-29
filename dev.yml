@@ -7,5 +7,6 @@
     - alacritty
     - tmux
     - neovim
+    - docker
     - golang
 
