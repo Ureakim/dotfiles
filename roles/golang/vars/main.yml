@@ -1,0 +1,9 @@
+---
+arch:
+  aarch64-32: armv6l
+  aarch64: arm64
+  armv6l: armv6l
+  armv7l: armv7l
+  x86: "386"
+  386: "386"
+  x86_64: amd64

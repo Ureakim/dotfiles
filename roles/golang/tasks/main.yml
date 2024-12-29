@@ -1,0 +1,40 @@
+---
+- name: Get the current installed golang version
+  shell: go env GOVERSION
+  register: go_installed
+  changed_when: false
+  failed_when: false
+
+- name: Get the latest golang version
+  shell: "curl 'https://go.dev/VERSION?m=text' | head -n 1"
+  register: go_latest
+  changed_when: false
+
+- name: Remove old version of golang
+  file:
+    path: ~/.local/go
+    state: absent
+  when: go_installed.stdout != go_latest.stdout
+
+- name: Download and install golang
+  unarchive:
+    src: https://go.dev/dl/{{ go_latest.stdout }}.linux-{{ arch[ansible_facts.architecture] }}.tar.gz
+    dest: ~/.local/
+    remote_src: yes
+  when: go_installed.stdout != go_latest.stdout
+
+- name: Get the current installed gopls version
+  shell: gopls version | cut -d' ' -f 2
+  register: gopls_version
+  changed_when: false
+  failed_when: false
+
+- name: Get the latest gopls version
+  shell: go list -m -f '{{ "{{" }}.Version {{ "}}" }}' golang.org/x/tools/gopls@latest
+  register: gopls_latest
+  changed_when: false
+
+- name: Install the latest version of gopls
+  shell: go install golang.org/x/tools/gopls@latest
+  when: gopls_version.stdout != gopls_latest.stdout
+

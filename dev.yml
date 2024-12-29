@@ -5,4 +5,5 @@
   roles:
     - fonts
     - neovim
+    - golang
 
