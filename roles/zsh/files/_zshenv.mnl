@@ -1,4 +1,4 @@
-export GOINSTALL=/usr/local/go/bin
+export GOINSTALL=$HOME/.local/go/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 
