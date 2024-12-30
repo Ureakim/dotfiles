@@ -4,7 +4,7 @@
     msg: "User set to '{{ lookup('env', 'USER', default=UNDEFINED) }}'"
 
 - name: Ensure zsh is at the latest version
-  dnf:
+  package:
     name:
       - zsh
     state: present
