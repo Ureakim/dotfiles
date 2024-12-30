@@ -1,5 +1,5 @@
 ---
-- name: Create `~/bin` directory
+- name: Create `~/.local/share/fonts/Monaspice` directory
   file:
     path: ~/.local/share/fonts/Monaspice
     state: directory
