@@ -1,6 +1,6 @@
 ---
 - name: Ensure tmux and dependencies are at the latest version
-  dnf:
+  package:
     name:
       - tmux
     state: present
