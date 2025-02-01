@@ -26,6 +26,7 @@
     repo: https://github.com/neovim/neovim.git
     dest: "{{ homedir.stdout }}/.nvim-src"
     version: stable
+    force: true
   register: neovim_version
 
 - name: Build Neovim
