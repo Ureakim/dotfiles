@@ -1,3 +1,0 @@
-if [ -f ./.zprofile.specific ]; then
-	. ./.zprofile.specific
-fi

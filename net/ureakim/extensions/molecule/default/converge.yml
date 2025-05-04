@@ -1,0 +1,9 @@
+---
+- name: Include roles from the collection
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Testing roles
+      ansible.builtin.include_role:
+        name: net.ureakim.tmux
+        tasks_from: main.yml

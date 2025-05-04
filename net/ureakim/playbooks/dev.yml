@@ -1,0 +1,8 @@
+---
+- name: Install dev tools
+  hosts: localhost
+  tasks:
+    - name: Tmux
+      ansible.builtin.include_role:
+        name: net.ureakim.tmux
+        tasks_from: main.yml
