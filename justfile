@@ -7,7 +7,7 @@ build:
 	{{container_engine}} build -t ureakim/ansible -f Containerfile .
 
 run:
-	{{container_engine}} run --rm -it --init \
-		-v .:/root/.ansible/collections/ansible_collections:Z \
-		-w /root/.ansible/collections/ansible_collections/net/ureakim/extensions \
+	{{container_engine}} run --rm -it --init --privileged \
+		-v .:/home/ubuntu/.ansible/collections/ansible_collections:Z \
+		-w /home/ubuntu/.ansible/collections/ansible_collections/net/ureakim/extensions \
 		ureakim/ansible
