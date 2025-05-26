@@ -9,6 +9,7 @@ RUN apt update && \
 
 USER ubuntu
 
+RUN mkdir -p /home/ubuntu/.ansible/collections/ansible_collections
 ENV PATH="$PATH:~/.local/bin"
 
 RUN export PIP_BREAK_SYSTEM_PACKAGES=1 && \
