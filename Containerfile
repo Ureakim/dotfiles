@@ -7,11 +7,6 @@ RUN apt update && \
 		python3 python3-pip python3-dev libssl-dev && \
 	rm -rf /var/lib/apt/lists/*
 
-USER ubuntu
-
-RUN mkdir -p /home/ubuntu/.ansible/collections/ansible_collections
-ENV PATH="$PATH:~/.local/bin"
-
 RUN export PIP_BREAK_SYSTEM_PACKAGES=1 && \
 	python3 -m pip install molecule ansible-core && \
 	python3 -m pip install --upgrade --user setuptools && \
