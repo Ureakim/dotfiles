@@ -7,14 +7,16 @@ container_args := if container_engine == "docker" {
 } else {
 	''
 }
+container_mountpoint := '/home/ubuntu/.ansible/collections/ansible_collections'
+container_launch := container_engine + ' run --rm -it --init --privileged -v .:' + container_mountpoint + ':Z'
+image_name := 'ureakim/ansible'
+test_script := './testall.sh'
 
 build:
-	{{container_engine}} build -t ureakim/ansible -f Containerfile .
+	{{container_engine}} build -t {{image_name}} -f Containerfile .
 
 run:
-	{{container_engine}} run --rm -it --init --privileged \
-		-v .:/home/ubuntu/.ansible/collections/ansible_collections:Z \
-		-w /home/ubuntu/.ansible/collections/ansible_collections/net/ureakim/extensions \
-		{{container_args}} \
-		ureakim/ansible
+	{{container_launch}} {{container_args}} -w {{container_mountpoint}} {{image_name}}
 
+test:
+	{{container_launch}} {{container_args}} -w {{container_mountpoint}} {{image_name}} {{test_script}}

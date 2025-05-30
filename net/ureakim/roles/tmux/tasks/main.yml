@@ -3,6 +3,7 @@
   package:
     name:
       - tmux
+    update_cache: true
     state: present
   become: yes
 
