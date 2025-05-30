@@ -9,6 +9,4 @@ platforms:
     image: docker.io/geerlingguy/docker-fedora42-ansible
     pre_build_image: true
 verifier:
-  name: testinfra
-  options:
-    v: 1
+  name: ansible

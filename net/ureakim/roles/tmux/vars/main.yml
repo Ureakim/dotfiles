@@ -1,0 +1,7 @@
+---
+packages:
+  - tmux
+
+files:
+  - src: "_tmux.conf"
+    dest: "~/.tmux.conf"

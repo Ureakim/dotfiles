@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: all
+  vars_files:
+    - ../../vars/main.yml
+  tasks:
+    - name: Get symlinks facts
+      stat:
+        path: "{{ item.dest }}"
+      loop: "{{ files }}"
+      register: symlink_results
+
+    - name: Validate symlinks
+      assert:
+        that:
+          - item.stat.exists
+          - item.stat.islnk
+      loop: "{{ symlink_results.results }}"
+      loop_control:
+        label: "{{ item.item.dest }}"

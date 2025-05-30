@@ -1,8 +1,7 @@
 ---
 - name: Ensure tmux and dependencies are at the latest version
   package:
-    name:
-      - tmux
+    name: "{{ packages }}"
     update_cache: true
     state: present
   become: yes
@@ -13,6 +12,5 @@
     dest: "{{ item.dest }}"
     force: true
     state: link
-  loop:
-    - { src: "_tmux.conf", dest: "~/.tmux.conf" }
+  loop: "{{ files }}"
 
