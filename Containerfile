@@ -8,10 +8,11 @@ RUN apt update && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN export PIP_BREAK_SYSTEM_PACKAGES=1 && \
-	python3 -m pip install molecule ansible-core && \
+	python3 -m pip install molecule ansible-core pytest pytest-testinfra && \
 	python3 -m pip install --upgrade --user setuptools && \
 	python3 -m pip install --user molecule && \
 	python3 -m pip install --user molecule ansible-lint && \
-	python3 -m pip install --user "molecule-plugins[podman]"
+	python3 -m pip install --user "molecule-plugins[podman]" && \
+	python3 -m pip install --user "molecule-plugins[testinfra]"
 
 CMD [ "/usr/bin/bash" ]

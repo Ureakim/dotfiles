@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Replace this task with one that validates your content
+    - name: Tmux
       ansible.builtin.include_role:
         name: net.ureakim.tmux
 
