@@ -1,0 +1,8 @@
+---
+- name: Install latest podman
+  package:
+    name: podman
+    state: latest
+    update_cache: true
+  become: yes
+
