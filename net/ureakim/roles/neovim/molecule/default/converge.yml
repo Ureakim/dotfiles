@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: neovim
+      ansible.builtin.include_role:
+        name: net.ureakim.neovim
+
