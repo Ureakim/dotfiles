@@ -1,8 +1,12 @@
 ---
 - name: Install dev tools
+  connection: local
   hosts: localhost
-  tasks:
-    - name: Tmux
-      ansible.builtin.include_role:
-        name: net.ureakim.tmux
-        tasks_from: main.yml
+  roles:
+    - fonts
+    - zsh
+    - alacritty
+    - tmux
+    - neovim
+    - podman
+    - golang
