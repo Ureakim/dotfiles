@@ -15,7 +15,7 @@ if [ $# -gt 0 ]; then
 		if [ -d "${role_path}/molecule" ]; then
 			echo "🔍 Testing role: $1"
 			cd "$role_path"
-			molecule test
+			molecule test --all
 			cd - > /dev/null
 		else
 			printf "⚠️ ${YELLOW} No Molecule scenario found for ${1}, skipping.${NC}\n"
@@ -29,7 +29,7 @@ else
 		if [ -d "${role}molecule" ]; then
 			echo "🔍 Testing role: $(basename "$role")"
 			cd "$role"
-			molecule test
+			molecule test --all
 			cd - > /dev/null
 		else
 			printf "⚠️ ${YELLOW} No Molecule scenario found for $(basename "$role"), skipping.${NC}\n"

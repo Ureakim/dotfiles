@@ -1,0 +1,5 @@
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/Applications:$PATH
+
+if [ -f ~/.zshenv.specific ]; then
+    . ~/.zshenv.specific
+fi

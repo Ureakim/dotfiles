@@ -1,0 +1,41 @@
+---
+- name: Ensure i3wm and dependencies are at the latest version
+  package:
+    name: "{{packages[ansible_os_family]}}"
+    update_cache: true
+    state: present
+  become: yes
+
+- name: Create `~/bin` directory
+  file:
+    path: ~/bin
+    state: directory
+    mode: '0755'
+
+- name: Create `~/.config` directory
+  file:
+    path: ~/.config
+    state: directory
+    mode: '0755'
+
+- name: Symlink configurations
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: true
+    state: link
+  loop: "{{ files }}"
+
+- name: Create .bg directory
+  file:
+    path: ~/.bg
+    state: directory
+    mode: '0755'
+
+- name: Symlink wallpaper
+  file:
+    src: "{{ role_path }}/files/bg/wallpaper.png"
+    dest: "~/.bg/wallpaper.png"
+    force: true
+    state: link
+

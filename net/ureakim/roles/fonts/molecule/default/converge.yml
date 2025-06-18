@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: fonts
+      ansible.builtin.include_role:
+        name: net.ureakim.fonts
+

@@ -1,0 +1,51 @@
+separator_block_width=30
+
+[NET]
+command=~/.config/i3blocks/iface.sh
+LABEL= 
+DOWN_COLOR=#bf616a
+FG_COLOR=#fcfcfc
+BG_COLOR=#191c24
+interval=10
+display_wifi_name=1
+
+[CPULOAD]
+LABEL= 
+FG_COLOR=#fcfcfc
+BG_COLOR=#191c24
+command=~/.config/i3blocks/cpuload.sh
+interval=10
+
+[MEM]
+LABEL=  
+FG_COLOR=#fcfcfc
+BG_COLOR=#191c24
+command=~/.config/i3blocks/memory.sh
+interval=5
+
+[VOL]
+command=~/.config/i3blocks/volume.sh
+interval=once
+signal=1
+DEFAULT_COLOR=#ffffff
+MUTED_COLOR=#a0a0a0
+USE_ALSA_NAME=0
+USE_DESCRIPTION=0
+LONG_FORMAT=${SYMB} ${VOL}%
+SHORT_FORMAT=${SYMB} ${VOL}%
+
+[TIME_DATE]
+LABEL=  
+markup=pango
+FG_COLOR=#fcfcfc
+BG_COLOR=#191c24
+command=~/.config/i3blocks/time.sh
+interval=1
+
+[SHUTDOWN]
+full_text=    
+short_text=    
+color=#bf616a
+background=#191c24
+command=~/.config/i3blocks/shutdownmenu.sh
+LAUNCHER=rofi

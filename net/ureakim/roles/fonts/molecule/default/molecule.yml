@@ -1,0 +1,12 @@
+---
+driver:
+  name: podman
+platforms:
+  - name: ubuntu2404
+    image: docker.io/geerlingguy/docker-ubuntu2404-ansible
+    pre_build_image: true
+  - name: fedora42
+    image: docker.io/geerlingguy/docker-fedora42-ansible
+    pre_build_image: true
+verifier:
+  name: ansible

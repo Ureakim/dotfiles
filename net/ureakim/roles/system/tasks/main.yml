@@ -1,0 +1,13 @@
+---
+- name: Mount tmp directories in tmpfs
+  mount:
+    src: tmpfs
+    path: "{{item}}"
+    fstype: tmpfs
+    opts: defaults,noatime,nosuid,size=8g
+    state: present
+  become: yes
+  loop:
+    - "/tmp"
+    - "/var/tmp"
+

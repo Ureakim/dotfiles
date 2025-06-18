@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: i3wm
+      ansible.builtin.include_role:
+        name: net.ureakim.i3wm
+
