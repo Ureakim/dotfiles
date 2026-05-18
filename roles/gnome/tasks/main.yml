@@ -1,0 +1,13 @@
+---
+- name: Check if dconf backup files exist
+  ansible.builtin.stat:
+    path: "{{ role_path }}/files/{{ item.file }}"
+  loop: "{{ dconf_backups }}"
+  register: backup_file_stats
+
+- name: Restore dconf settings from local file
+  ansible.builtin.shell:
+    cmd: dconf load {{ item.item.path }} < {{ item.stat.path }}
+  loop: "{{ backup_file_stats.results }}"
+  when: item.stat.exists
+

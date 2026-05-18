@@ -1,0 +1,6 @@
+---
+- name: Configuring WM
+  hosts: localhost
+  connection: local
+  roles:
+    - gnome

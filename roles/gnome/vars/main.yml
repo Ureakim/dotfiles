@@ -1,0 +1,12 @@
+dconf_backups:
+  - path: /org/gnome/desktop/wm/keybindings/ 
+    file: dconf_gnome_desktop_wm_keybindings.dconf
+  - path: /org/gnome/desktop/input-sources/ 
+    file: dconf_gnome_desktop_input-sources.dconf
+  - path: /org/gnome/settings-daemon/plugins/media-keys/ 
+    file: dconf_gnome_settings-daemon_plugins_media-keys.dconf
+  - path: /org/gnome/shell/keybindings/ 
+    file: dconf_gnome_shell_keybindings.dconf
+  - path: /org/gnome/shell/extensions/ 
+    file: dconf_gnome_shell_extensions.dconf
+
