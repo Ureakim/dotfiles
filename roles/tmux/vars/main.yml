@@ -1,0 +1,7 @@
+---
+app_package_name:
+  - tmux
+
+app_file_symlinks:
+  - src: _tmux.conf
+    dest: ~/.tmux.conf
