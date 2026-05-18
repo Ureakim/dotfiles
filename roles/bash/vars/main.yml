@@ -1,0 +1,11 @@
+---
+app_package_name:
+  - bash
+
+app_file_symlinks:
+  - src: _bashrc
+    dest: ~/.bashrc
+  - src: _bash_profile
+    dest: ~/.bash_profile
+  - src: _bash_logout
+    dest: ~/.bash_logout

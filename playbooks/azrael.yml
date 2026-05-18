@@ -3,5 +3,6 @@
   hosts: local
   roles:
     - gnome
+    - bash
     - git
     - tmux
