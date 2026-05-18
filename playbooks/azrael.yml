@@ -1,6 +1,6 @@
 ---
 - name: Configuring WM
-  hosts: localhost
-  connection: local
+  hosts: local
   roles:
     - gnome
+    - git

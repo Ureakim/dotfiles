@@ -1,0 +1,7 @@
+---
+app_package_name:
+  - git
+
+app_file_symlinks:
+  - src: _gitconfig
+    dest: ~/.gitconfig
