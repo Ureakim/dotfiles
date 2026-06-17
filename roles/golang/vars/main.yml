@@ -1,0 +1,8 @@
+---
+go_version: "1.26.4"
+go_arch: "linux-amd64"
+go_install_dir: "/usr/local"
+go_root: "{{ go_install_dir }}/go"
+
+go_download_url: >-
+  https://go.dev/dl/go{{ go_version }}.{{ go_arch }}.tar.gz

@@ -1,0 +1,45 @@
+---
+- name: Check installed Go version
+  command: "{{ go_root }}/bin/go version"
+  register: go_version_check
+  failed_when: false
+  changed_when: false
+
+- name: Set installation status
+  set_fact:
+    go_install_required: >-
+      {{
+        go_version_check.rc != 0 or
+        ('go' ~ go_version) not in go_version_check.stdout
+      }}
+
+- name: Download Go archive
+  get_url:
+    url: "{{ go_download_url }}"
+    dest: "/tmp/go{{ go_version }}.tar.gz"
+    mode: "0644"
+  when: go_install_required
+
+- name: Remove existing Go installation
+  file:
+    path: "{{ go_root }}"
+    state: absent
+  when: go_install_required
+  become: true
+
+- name: Extract Go archive
+  unarchive:
+    src: "/tmp/go{{ go_version }}.tar.gz"
+    dest: "{{ go_install_dir }}"
+    remote_src: true
+  when: go_install_required
+  become: true
+
+- name: Create profile script
+  copy:
+    dest: /etc/profile.d/go.sh
+    mode: "0644"
+    content: |
+      export GOROOT={{ go_root }}
+      export PATH=$PATH:{{ go_root }}/bin
+  become: true

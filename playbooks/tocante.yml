@@ -1,0 +1,9 @@
+---
+- name: Tocante project playbook
+  hosts: tocante
+  roles:
+    - tmux
+    - git
+    - role: golang
+      vars:
+        go_version: "1.26.4"

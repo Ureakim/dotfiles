@@ -7,6 +7,9 @@ prepare:
 azrael:
 	{{RUN_PLAYBOOK_CMD}} playbooks/azrael.yml
 
+tocante:
+	{{RUN_PLAYBOOK_CMD}} playbooks/tocante.yml
+
 save-dconf:
 	dconf dump /org/gnome/desktop/wm/keybindings/ > {{GNOME_ROLE_FILE_PATH}}/dconf_gnome_desktop_wm_keybindings.dconf
 	dconf dump /org/gnome/desktop/input-sources/ > {{GNOME_ROLE_FILE_PATH}}/dconf_gnome_desktop_input-sources.dconf
