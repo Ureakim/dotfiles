@@ -1,9 +1,12 @@
 ---
 - name: Tocante project playbook
   hosts: tocante
+  remote_user: "{{ lookup('env', 'USER') }}"
+
   roles:
     - tmux
     - git
+    - neovim
     - role: golang
       vars:
         go_version: "1.26.4"
