@@ -1,0 +1,16 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "providers": {
+    "ollama": {
+      "name": "llamacpp",
+      "base_url": "http://192.168.1.254:8080/v1/",
+      "type": "openai-compat",
+      "models": [
+        {
+          "name": "Qwen 3.6 27B Q4_K_XL",
+          "id": "Qwen 3.6 27B Q8 Agent"
+        }
+      ]
+    }
+  }
+}

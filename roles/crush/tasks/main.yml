@@ -1,0 +1,30 @@
+---
+- name: Add Charm yum repository
+  yum_repository:
+    name: charm
+    description: Charm
+    baseurl: https://repo.charm.sh/yum/
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: https://repo.charm.sh/yum/gpg.key
+    state: present
+  become: yes
+
+- name: Install crush package
+  yum:
+    name: crush
+    state: present
+  become: yes
+
+- name: Ensure parent directory exists
+  file:
+    path: "~/.config/crush"
+    state: directory
+    mode: '0755'
+
+- name: Symlink config
+  file:
+    src: "{{ role_path }}/files/crush.json"
+    dest: "~/.config/crush/crush.json"
+    state: link
+    force: true
