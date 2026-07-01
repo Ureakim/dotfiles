@@ -8,7 +8,7 @@
     gpgcheck: 1
     gpgkey: https://repo.charm.sh/yum/gpg.key
     state: present
-  become: yes
+  become: true
 
 - name: Install crush package
   yum:
@@ -18,13 +18,26 @@
 
 - name: Ensure parent directory exists
   file:
-    path: "~/.config/crush"
+    path: ~/.config/crush
     state: directory
     mode: '0755'
 
-- name: Symlink config
+- name: Verify symlink source files exist
+  stat:
+    path: "{{ role_path }}/files/{{ item.src }}"
+  register: symlink_source_check
+  loop: "{{ app_file_symlinks }}"
+
+- name: Fail if any symlink source is missing
+  fail:
+    msg: "Source file '{{ item.item.src }}' not found at {{ role_path }}/files/{{ item.item.src }}"
+  loop: "{{ symlink_source_check.results }}"
+  when: not item.stat.exists
+
+- name: Create symlinks
   file:
-    src: "{{ role_path }}/files/crush.json"
-    dest: "~/.config/crush/crush.json"
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
     state: link
     force: true
+  loop: "{{ app_file_symlinks }}"

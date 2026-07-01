@@ -8,6 +8,6 @@
 - name: Clone neovim config
   git:
     repo: https://github.com/Ureakim/dotvim.git
-    dest: $HOME/.config/nvim
+    dest: "{{ ansible_facts.env.HOME }}/.config/nvim"
     single_branch: yes
     version: nvim

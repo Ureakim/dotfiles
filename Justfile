@@ -1,14 +1,17 @@
 GNOME_ROLE_FILE_PATH := "./roles/gnome/files"
-RUN_PLAYBOOK_CMD := "ansible-playbook --ask-become-pass"
+RUN_PLAYBOOK_CMD := "ansible-playbook"
 
 prepare:
 	pipx install --include-deps ansible
 
 azrael:
-	{{RUN_PLAYBOOK_CMD}} playbooks/azrael.yml
+	{{RUN_PLAYBOOK_CMD}} --ask-become-pass playbooks/azrael.yml
 
 tocante:
-	{{RUN_PLAYBOOK_CMD}} playbooks/tocante.yml
+	{{RUN_PLAYBOOK_CMD}} playbooks/projects/tocante.yml
+
+dotfiles:
+	{{RUN_PLAYBOOK_CMD}} playbooks/projects/dotfiles.yml
 
 save-dconf:
 	dconf dump /org/gnome/desktop/wm/keybindings/ > {{GNOME_ROLE_FILE_PATH}}/dconf_gnome_desktop_wm_keybindings.dconf

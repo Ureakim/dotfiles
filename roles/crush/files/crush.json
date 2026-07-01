@@ -7,7 +7,7 @@
       "type": "openai-compat",
       "models": [
         {
-          "name": "Qwen 3.6 27B Q4_K_XL",
+          "name": "Qwen 3.6 27B Q8",
           "id": "Qwen 3.6 27B Q8 Agent"
         }
       ]

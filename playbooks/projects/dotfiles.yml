@@ -1,0 +1,7 @@
+---
+- name: Dotfiles project playbook
+  hosts: dotfiles
+  remote_user: "{{ lookup('env', 'USER') }}"
+
+  roles:
+    - crush

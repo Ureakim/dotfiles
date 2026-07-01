@@ -6,6 +6,18 @@
   become: true
   loop: "{{ app_package_name }}"
 
+- name: Verify symlink source files exist
+  stat:
+    path: "{{ role_path }}/files/{{ item.src }}"
+  register: symlink_source_check
+  loop: "{{ app_file_symlinks }}"
+
+- name: Fail if any symlink source is missing
+  fail:
+    msg: "Source file '{{ item.item.src }}' not found at {{ role_path }}/files/{{ item.item.src }}"
+  loop: "{{ symlink_source_check.results }}"
+  when: not item.stat.exists
+
 - name: Create symlinks
   file:
     src: "{{ role_path }}/files/{{ item.src }}"

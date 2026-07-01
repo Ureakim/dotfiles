@@ -2,7 +2,6 @@
 - name: Configuring WM
   hosts: local
   roles:
-    - gnome
     - bash
     - git
     - tmux
