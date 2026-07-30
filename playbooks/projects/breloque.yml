@@ -1,6 +1,6 @@
 ---
-- name: Tocante project playbook
-  hosts: tocante
+- name: Breloque project playbook
+  hosts: breloque
   remote_user: "{{ lookup('env', 'USER') }}"
 
   roles:

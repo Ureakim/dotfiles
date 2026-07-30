@@ -2,3 +2,5 @@
 app_file_symlinks:
   - src: crush.json
     dest: ~/.config/crush/crush.json
+  - src: skills
+    dest: ~/.config/crush/skills
