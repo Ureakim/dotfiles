@@ -1,0 +1,30 @@
+---
+- name: Ensure font installation directory exists
+  ansible.builtin.file:
+    path: "{{ nerd_fonts_install_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Check if specific Nerd Font versions are already installed
+  ansible.builtin.stat:
+    path: "{{ nerd_fonts_install_dir }}/.{{ item }}_{{ nerd_fonts_version }}_installed"
+  register: font_status
+  loop: "{{ nerd_fonts_list }}"
+
+- name: Download and extract Nerd Fonts
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ nerd_fonts_version }}/{{ item.item }}.zip"
+    dest: "{{ nerd_fonts_install_dir }}"
+    remote_src: yes
+    creates: "{{ nerd_fonts_install_dir }}/{{ item.item }}.ttf"  # Basic fallback check
+  loop: "{{ font_status.results }}"
+  when: not item.stat.exists
+  notify: Update font cache
+
+- name: Create version tracking markers for idempotency
+  ansible.builtin.file:
+    path: "{{ nerd_fonts_install_dir }}/.{{ item.item }}_{{ nerd_fonts_version }}_installed"
+    state: touch
+    mode: '0644'
+  loop: "{{ font_status.results }}"
+  when: not item.stat.exists

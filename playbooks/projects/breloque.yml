@@ -8,6 +8,7 @@
     - git
     - neovim
     - crush
+    - nerdfonts
     - role: golang
       vars:
         go_version: "1.26.4"

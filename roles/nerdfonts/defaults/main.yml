@@ -1,0 +1,5 @@
+---
+nerd_fonts_version: "v3.4.0"
+nerd_fonts_install_dir: "{{ ansible_env.HOME }}/.local/share/fonts/nerd-fonts"
+nerd_fonts_list:
+  - Monaspace
