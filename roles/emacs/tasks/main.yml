@@ -1,0 +1,13 @@
+---
+- name: Install package
+  package:
+    name: emacs
+    state: present
+  become: true
+
+- name: Clone emacs config
+  git:
+    repo: https://github.com/Ureakim/dotemacs.git
+    dest: "{{ ansible_facts.env.HOME }}/.emacs.d"
+    single_branch: yes
+    version: main
