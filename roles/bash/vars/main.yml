@@ -9,3 +9,5 @@ app_file_symlinks:
     dest: ~/.bash_profile
   - src: _bash_logout
     dest: ~/.bash_logout
+  - src: _bashrc.d
+    dest: ~/.bashrc.d
