@@ -1,0 +1,67 @@
+---
+- name: Create temporary Terra repository configuration
+  ansible.builtin.yum_repository:
+    name: terra_temp
+    description: Temporary Terra Repository
+    baseurl: "https://repos.fyralabs.com/terra{{ ansible_distribution_major_version }}"
+    gpgcheck: false  # Replaces '--nogpgcheck'
+    repo_gpgcheck: false
+  become: true
+
+- name: Install terra-release and terra-gpg-keys packages
+  ansible.builtin.dnf:
+    name:
+        - terra-release
+        - terra-gpg-keys
+    state: present
+    enablerepo: terra_temp
+  become: true
+
+- name: Remove temporary Terra repository configuration
+  ansible.builtin.yum_repository:
+    name: terra_temp
+    state: absent
+  become: true
+
+- name: Install Espanso Wayland
+  ansible.builtin.dnf:
+    name: espanso-wayland
+    state: present
+  become: true
+  notify: Restart espanso
+
+- name: Get Espanso binary path
+  ansible.builtin.command:
+    cmd: which espanso
+  register: espanso_binary
+  changed_when: false
+
+- name: Grant Espanso CAP_DAC_OVERRIDE capability
+  community.general.capabilities:
+    path: "{{ espanso_binary.stdout }}"
+    capability: cap_dac_override+p
+    state: present
+  become: true
+
+- name: Register Espanso user systemd service
+  ansible.builtin.command:
+    cmd: espanso service register
+  args:
+    creates: "{{ ansible_facts.user_dir }}/.config/systemd/user/espanso.service"
+
+- name: Create symlinks
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    force: true
+  loop: "{{ app_file_symlinks }}"
+
+- name: Start Espanso
+  ansible.builtin.systemd:
+    name: espanso
+    scope: user
+    state: started
+    enabled: true
+    daemon_reload: true
+

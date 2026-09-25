@@ -1,0 +1,8 @@
+---
+- name: Restart espanso
+  ansible.builtin.systemd:
+    name: espanso
+    scope: user
+    state: restarted
+  become: false
+

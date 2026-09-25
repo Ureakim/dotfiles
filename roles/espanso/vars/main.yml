@@ -1,0 +1,4 @@
+---
+app_file_symlinks:
+  - src: espanso
+    dest: ~/.config/espanso
