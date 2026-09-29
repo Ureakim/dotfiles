@@ -1,0 +1,13 @@
+---
+- name: Planner project playbook
+  hosts: planner
+  remote_user: "{{ lookup('env', 'USER') }}"
+
+  roles:
+    - tmux
+    - git
+    - emacs
+    - nerdfonts
+    - role: golang
+      vars:
+        go_version: "1.27.1"
