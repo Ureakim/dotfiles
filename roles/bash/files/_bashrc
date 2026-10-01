@@ -23,7 +23,3 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi

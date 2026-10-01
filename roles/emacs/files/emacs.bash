@@ -1,2 +1,1 @@
-alias vim=nvim
 alias mx="emacs -nw"

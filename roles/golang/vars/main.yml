@@ -6,3 +6,7 @@ go_root: "{{ go_install_dir }}/go"
 
 go_download_url: >-
   https://go.dev/dl/go{{ go_version }}.{{ go_arch }}.tar.gz
+
+app_file_symlinks:
+  - src: golang.bash
+    dest: ~/.bashrc.d/golang.bash

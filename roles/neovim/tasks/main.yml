@@ -11,3 +11,11 @@
     dest: "{{ ansible_facts.env.HOME }}/.config/nvim"
     single_branch: yes
     version: nvim
+
+- name: Create symlinks
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    force: true
+  loop: "{{ app_file_symlinks }}"

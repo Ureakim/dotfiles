@@ -11,3 +11,11 @@
     dest: "{{ ansible_facts.env.HOME }}/.emacs.d"
     single_branch: yes
     version: main
+
+- name: Create symlinks
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    force: true
+  loop: "{{ app_file_symlinks }}"

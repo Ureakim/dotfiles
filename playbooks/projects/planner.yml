@@ -4,6 +4,7 @@
   remote_user: "{{ lookup('env', 'USER') }}"
 
   roles:
+    - bash
     - tmux
     - git
     - emacs

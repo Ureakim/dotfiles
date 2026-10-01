@@ -1,0 +1,3 @@
+app_file_symlinks:
+  - src: emacs.bash
+    dest: ~/.bashrc.d/emacs.bash
