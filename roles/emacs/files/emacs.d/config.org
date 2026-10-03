@@ -160,7 +160,9 @@ Autocompletion
     (corfu-cycle t)                ;; Enable cycling for candidates
     (corfu-auto nil)               ;; Enable auto-completion
     :init
-    (global-corfu-mode))
+    (global-corfu-mode)
+    :bind
+    ("C-l" . completion-at-point))
 
   (use-package corfu-terminal
     :vc (:url "https://codeberg.org/akib/emacs-corfu-terminal"
