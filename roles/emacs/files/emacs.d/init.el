@@ -1,6 +1,9 @@
 ;; Load the literate Org configuration.
 (require 'org)
 
+;; do not follow symlinks
+(setq vc-follow-symlinks nil)
+
 (let ((config-file (expand-file-name "config.org" user-emacs-directory)))
   (when (file-exists-p config-file)
     (org-babel-load-file config-file)))
