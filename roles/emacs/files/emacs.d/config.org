@@ -117,7 +117,7 @@ Disable backup files
     :init
     (setq evil-want-C-i-jump nil)
     :config
-    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-u-scroll nil)
     (evil-set-leader 'normal (kbd "SPC"))
     (evil-define-key 'normal 'global (kbd "<leader>fb") #'ibuffer)
     (evil-define-key 'normal 'global (kbd "<leader>ff") #'dirvish)
@@ -140,6 +140,7 @@ Disable backup files
 
 ** Tools
 
+LSP Client
 #+begin_src emacs-lisp
   (use-package eglot
     :ensure nil
@@ -149,6 +150,26 @@ Disable backup files
     (eglot-sync-connect nil) ; Preventing Eglot from blocking the Emacs UI on connection
     (eglot-events-buffer-config '(:size 0 :format short)) ; Disabling LSP event logging
     )
+#+end_src
+
+Autocompletion
+#+begin_src emacs-lisp
+  (use-package corfu
+    :ensure t
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for candidates
+    (corfu-auto nil)               ;; Enable auto-completion
+    :init
+    (global-corfu-mode))
+
+  (use-package corfu-terminal
+    :vc (:url "https://codeberg.org/akib/emacs-corfu-terminal"
+         :rev :newest)
+    :after corfu)
+
+  ;; activate corfu-terminal only if inside a terminal
+  (unless (display-graphic-p)
+    (corfu-terminal-mode +1))
 #+end_src
 
 ** Languages
@@ -180,4 +201,3 @@ Disable backup files
                (assq language treesit-language-source-alist))
       (treesit-install-language-grammar language)))
 #+end_src
-
