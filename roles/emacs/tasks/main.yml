@@ -5,12 +5,15 @@
     state: present
   become: true
 
-- name: Clone emacs config
-  git:
-    repo: https://github.com/Ureakim/dotemacs.git
-    dest: "{{ ansible_facts.env.HOME }}/.emacs.d"
-    single_branch: yes
-    version: main
+- name: Create .bashrc.d directory
+  ansible.builtin.file:
+    path: ~/.bashrc.d
+    state: directory
+
+- name: Create .emacs.d directory
+  ansible.builtin.file:
+    path: ~/.emacs.d
+    state: directory
 
 - name: Create symlinks
   file:

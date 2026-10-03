@@ -1,3 +1,7 @@
 app_file_symlinks:
   - src: emacs.bash
     dest: ~/.bashrc.d/emacs.bash
+  - src: emacs.d/init.el
+    dest: ~/.emacs.d/init.el
+  - src: emacs.d/config.org
+    dest: ~/.emacs.d/config.org

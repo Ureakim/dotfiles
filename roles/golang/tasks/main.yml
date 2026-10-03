@@ -44,6 +44,11 @@
       export PATH=$PATH:{{ go_root }}/bin
   become: true
 
+- name: Create .bashrc.d directory
+  ansible.builtin.file:
+    path: ~/.bashrc.d
+    state: directory
+
 - name: Create symlinks
   file:
     src: "{{ role_path }}/files/{{ item.src }}"

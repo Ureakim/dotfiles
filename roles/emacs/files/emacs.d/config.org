@@ -1,0 +1,183 @@
+#+title: Emacs Configuration
+#+author: Ureakim
+#+property: header-args:emacs-lisp :tangle yes
+
+* UI Settings
+
+Don't show the startup screen.
+#+begin_src emacs-lisp
+  (setq inhibit-startup-screen t)
+#+end_src
+
+Don't display the menu bar, toolbar, or scroll bar.
+#+begin_src emacs-lisp
+  (menu-bar-mode -1)
+  (when (display-graphic-p)
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1))
+#+end_src
+
+Replace bell sound by the visual bell
+#+begin_src emacs-lisp
+  (setq visible-bell t)
+#+end_src
+
+Show the current line and column in the mode line.
+#+begin_src emacs-lisp
+  (line-number-mode t)
+  (column-number-mode t)
+#+end_src
+
+Highlight the current line.
+#+begin_src emacs-lisp
+  (global-hl-line-mode 1)
+#+end_src
+
+Highlight matching parentheses.
+#+begin_src emacs-lisp
+  (show-paren-mode 1)
+#+end_src
+
+Automatically insert matching parentheses, brackets, and quotes.
+#+begin_src emacs-lisp
+  (electric-pair-mode 1)
+#+end_src
+
+Set the fill column
+#+begin_src emacs-lisp
+  (setq-default fill-column '100)
+#+end_src
+
+Indentation
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+#+end_src
+
+Ask before closing Emacs.
+#+begin_src emacs-lisp
+  (setq confirm-kill-emacs #'y-or-n-p)
+#+end_src
+
+* Editing Settings
+
+Use the system clipboard
+#+begin_src emacs-lisp
+  (setq x-select-enable-clipboard t)
+#+end_src
+
+Replace selected text when typing.
+#+begin_src emacs-lisp
+  (delete-selection-mode 1)
+#+end_src
+
+Never wrap long lines visually
+#+begin_src emacs-lisp
+  (setq-default truncate-lines t)
+  (setq-default truncate-partial-width-windows t)
+  (setq-default word-wrap nil)
+#+end_src
+
+Keep the cursor from sitting directly on the edge of the window.
+#+begin_src emacs-lisp
+  (setq scroll-margin 10)
+#+end_src
+
+Scroll by one line at a time.
+#+begin_src emacs-lisp
+  (setq scroll-conservatively 101)
+#+end_src
+
+* Backups Settings
+
+Disable backup files
+#+begin_src emacs-lisp
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+#+end_src
+
+* Package Management
+
+#+begin_src emacs-lisp
+  (require 'package)
+
+  (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                           ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                           ("melpa" . "https://melpa.org/packages/")))
+  (package-initialize)
+  (unless package-archive-contents
+  (package-refresh-contents))
+#+end_src
+
+** Evil mode
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :ensure t
+    :init
+    (setq evil-want-C-i-jump nil)
+    :config
+    (setq evil-want-C-u-scroll t)
+    (evil-set-leader 'normal (kbd "SPC"))
+    (evil-define-key 'normal 'global (kbd "<leader>fb") #'ibuffer)
+    (evil-define-key 'normal 'global (kbd "<leader>ff") #'dirvish)
+    (evil-mode 1))
+#+end_src
+
+** Projectile
+
+#+begin_src emacs-lisp
+  (use-package dirvish
+      :ensure t
+      :init
+      (dirvish-override-dired-mode)
+      :bind
+      (:map dirvish-mode-map
+      ("i" . dirvish-file-info-menu)
+      ("s" . dirvish-quicksort)
+      ("f" . dirvish-fd)))
+#+end_src
+
+** Tools
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    :ensure nil
+    :commands (eglot eglot-ensure)
+    :custom
+    (eglot-autoshutdown t) ; Auto-shutting down idle Eglot servers
+    (eglot-sync-connect nil) ; Preventing Eglot from blocking the Emacs UI on connection
+    (eglot-events-buffer-config '(:size 0 :format short)) ; Disabling LSP event logging
+    )
+#+end_src
+
+** Languages
+
+*** Go
+#+begin_src emacs-lisp
+  (use-package go-ts-mode
+    :ensure nil
+    :custom
+    (go-ts-mode-indent-offset tab-width)
+    :hook
+    ;(go-ts-mode . go-format-on-save-mode)
+    (go-ts-mode . eglot-ensure)
+    (go-ts-mode . (lambda () (my/ensure-treesit-grammar 'go)))
+    (go-mod-ts-mode . (lambda () (my/ensure-treesit-grammar 'gomod)))
+    :init
+    (add-to-list 'treesit-language-source-alist '(go "https://github.com/tree-sitter/tree-sitter-go"))
+    (add-to-list 'treesit-language-source-alist '(gomod "https://github.com/camdencheek/tree-sitter-go-mod"))
+    (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+    (add-to-list 'auto-mode-alist '("/go\\.mod\\'" . go-mod-ts-mode)))
+#+end_src
+
+* Custom functions
+
+#+begin_src emacs-lisp
+  (defun my/ensure-treesit-grammar (language)
+    "Install Tree-sitter grammar for LANGUAGE if unavailable."
+    (when (and (not (treesit-language-available-p language))
+               (assq language treesit-language-source-alist))
+      (treesit-install-language-grammar language)))
+#+end_src
+
