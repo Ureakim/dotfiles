@@ -146,6 +146,19 @@ Disable backup files
 
 ** Tools
 
+Window navigation
+#+begin_src emacs-lisp
+  (use-package ace-window
+    :ensure t
+    :bind
+    ("M-o" . ace-window)
+    ("C-c w v" . split-window-right)
+    ("C-c w h" . split-window-below)
+    :custom
+    (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+    )
+#+end_src
+
 LSP Client
 #+begin_src emacs-lisp
   (use-package eglot
