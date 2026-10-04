@@ -158,7 +158,7 @@ Autocompletion
     :ensure t
     :custom
     (corfu-cycle t)                ;; Enable cycling for candidates
-    (corfu-auto nil)               ;; Enable auto-completion
+    (corfu-auto nil)               ;; Disable auto-completion
     :init
     (global-corfu-mode)
     :bind
