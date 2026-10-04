@@ -28,6 +28,12 @@ Show the current line and column in the mode line.
   (column-number-mode t)
 #+end_src
 
+Display relative line number in the gutter
+#+begin_src emacs-lisp
+  (setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode 1)
+#+end_src
+
 Highlight the current line.
 #+begin_src emacs-lisp
   (global-hl-line-mode 1)
