@@ -1,4 +1,10 @@
 ---
+- name: Install package
+  package:
+    name: "fontconfig"
+    state: present
+  become: true
+
 - name: Ensure font installation directory exists
   ansible.builtin.file:
     path: "{{ nerd_fonts_install_dir }}"
