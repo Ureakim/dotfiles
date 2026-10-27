@@ -6,9 +6,8 @@
   roles:
     - tmux
     - git
-    - neovim
-    - crush
+    - emacs
     - nerdfonts
     - role: golang
       vars:
-        go_version: "1.26.4"
+        go_version: "1.27.2"

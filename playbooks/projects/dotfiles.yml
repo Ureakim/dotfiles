@@ -4,4 +4,3 @@
   remote_user: "{{ lookup('env', 'USER') }}"
 
   roles:
-    - crush

@@ -1,0 +1,28 @@
+
+---
+- name: Install Node.js and npm
+  become: true
+  ansible.builtin.dnf:
+    name: nodejs
+    state: present
+
+- name: Enable pnpm via Corepack
+  become: true
+  community.general.npm:
+    name: corepack
+    global: true
+    state: present
+
+- name: Enable pnpm
+  become: true
+  ansible.builtin.command:
+    cmd: corepack enable pnpm
+    creates: /usr/bin/pnpm
+
+- name: Install Pi coding agent
+  become: true
+  community.general.npm:
+    name: "{{ pi_dev_package }}"
+    global: true
+    state: present
+    ignore_scripts: true

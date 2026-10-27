@@ -1,0 +1,14 @@
+---
+- name: Amasi project playbook
+  hosts: amasi
+  remote_user: "{{ lookup('env', 'USER') }}"
+
+  roles:
+    - pidev
+    - tmux
+    - git
+    - emacs
+    - nerdfonts
+    - role: golang
+      vars:
+        go_version: "1.27.2"

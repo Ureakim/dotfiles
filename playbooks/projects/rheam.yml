@@ -1,0 +1,10 @@
+---
+- name: Rheam project playbook
+  hosts: rheam
+  remote_user: "{{ lookup('env', 'USER') }}"
+
+  roles:
+    - tmux
+    - git
+    - emacs
+    - nerdfonts
